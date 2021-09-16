@@ -1,0 +1,93 @@
+@import url(/src/global.module.css);
+.tweet-card {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--default-border);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.tweet-card .tweet-top {
+  display: flex;
+  margin-left: 26px;
+}
+.tweet-card .tweet-body {
+  display: flex;
+  flex-grow: 2;
+}
+.tweet-card .tweet-body .tweet-body-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.tweet-card .tweet-body .tweet-body-left .tweet-body-left-dp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tweet-card .tweet-body .tweet-body-left .tweet-body-left-dp svg {
+  border-radius: 50%;
+}
+.tweet-card .tweet-body .tweet-body-left .tweet-body-left-line {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 3px;
+  background-color: var(--default);
+}
+.tweet-card .tweet-body .tweet-body-main {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  margin-left: 5px;
+}
+.tweet-card .tweet-body .tweet-body-main .tweet-body-main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tweet-card
+  .tweet-body
+  .tweet-body-main
+  .tweet-body-main-info
+  .tweet-body-main-info-user
+  span[data-name] {
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.tweet-card
+  .tweet-body
+  .tweet-body-main
+  .tweet-body-main-info
+  .tweet-body-main-info-user
+  span[data-name]:hover {
+  text-decoration: underline;
+}
+.tweet-card
+  .tweet-body
+  .tweet-body-main
+  .tweet-body-main-info
+  .tweet-body-main-info-user
+  span[muted-text]::after {
+  content: " . ";
+}
+html[data-theme="default"] .tweet-body-main-info-dots {
+  fill: #000;
+}
+html[data-theme="dark"] .tweet-body-main-info-dots {
+  fill: #fff;
+}
+.tweet-card .tweet-body .tweet-body-main .tweet-body-main-body {
+  display: block;
+  align-self: flex-start;
+  flex-grow: 2;
+  justify-self: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.tweet-card .tweet-body .tweet-body-main .tweet-body-main-engage {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

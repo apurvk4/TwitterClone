@@ -1,0 +1,11 @@
+@import url(/src/global.module.css);
+.navList {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  flex-basis: 100%;
+  background-color: var(--default-bg);
+}
+.navListItem {
+  padding: 5px;
+}

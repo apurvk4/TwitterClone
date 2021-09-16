@@ -1,0 +1,174 @@
+/* html {
+  overflow-x: hidden;
+  overflow: hidden;
+  accent-blue:#1d9bf0;
+  accent-yellow: #ffd400;
+  accent-red: #f91880;
+  accent-voilet: #7856ff;
+  accent-orange: #ff7a00;
+  accent-green: #00ba7c;
+} */
+:root {
+  --default-bg: #ffffff;
+  --default-text: #000000;
+  --default: #eff3f4;
+  --default-border: rgba(0, 0, 0, 0.125);
+  --default-hover: #dfe4e4; /*dark mode hover: #eff3f4 #dfe4e4 */
+  --accent-color: #1d9bf0;
+  --spacer: 120px;
+  --left-size: 305px;
+  --aside-size: 350px;
+  --aside-leftMargin: 20px;
+  --spacer-left: 155px;
+  --spacer-right: 90px;
+}
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  color: var(--default-text);
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", "Segoe UI",
+    Tahoma, Geneva, Verdana, sans-serif;
+}
+.bgDefault {
+  filter: grayscale(100%);
+}
+.bgDark {
+  filter: brightness(0) invert(1);
+}
+[data-icon] {
+  fill: #1d9bf0;
+}
+html[data-theme="default"] .verified {
+  fill: #1d9bf0;
+}
+html[data-theme="dark"] .verified {
+  fill: #ffffff;
+}
+.deadpool {
+  fill: #ed1c24;
+}
+button:not(.tweet-btn.navbar-xl, .home) {
+  border: 1px solid var(--default-border);
+}
+html[data-theme="default" i] button[data-follow="follow" i] {
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
+}
+button[data-follow="following" i]:hover {
+  border-color: #ed1c24;
+  color: #ed1c24;
+}
+html[data-theme="default" i] button[data-follow="following" i] {
+  background-color: inherit;
+  color: #000000;
+}
+html[data-theme="dark" i] button[data-follow="follow" i] {
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+}
+html[data-theme="dark" i] button[data-follow="following" i] {
+  background-color: inherit;
+  color: #ffffff;
+}
+html[data-theme="default" i] [data-user] {
+  font-weight: 800;
+}
+html
+  body
+  button:not(.tweet-btn.navbar-xl, .home)[data-follow="following" i]:hover {
+  border: 1px solid red;
+  color: red;
+  cursor: pointer;
+}
+html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-share],
+html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-like],
+html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-reply],
+html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-rt] {
+  fill: #000000;
+}
+
+html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-share],
+html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-like],
+html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-reply],
+html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-rt] {
+  fill: #ffffff;
+}
+[data-hashtag] {
+  color: var(--accent-color);
+  cursor: pointer;
+}
+[data-hashtag]:hover {
+  text-decoration: underline;
+}
+[data-dp]:hover {
+  opacity: 0.7;
+}
+[muted-text] {
+  opacity: 0.7;
+}
+.reactWrapper {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.reactFlexWrapper {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.overlay {
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--default);
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  bottom: 0px;
+  transform: translate(-50%, -50%);
+  min-height: 200px;
+  min-width: 600px;
+  overflow: scroll;
+}
+.modal::-webkit-scrollbar {
+  display: none;
+}
+.modal-top {
+  display: flex;
+  margin-left: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--default-border);
+  width: 100%;
+  min-height: 53px;
+}
+.modal-top div:nth-of-type(1) {
+  margin-right: 5px;
+  flex-grow: 1;
+}
+.modal-top div:nth-of-type(2) {
+  flex-grow: 3;
+}
+.modal-body {
+  display: flex;
+  flex-grow: 3;
+  justify-content: center;
+  align-items: center;
+}
