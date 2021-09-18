@@ -9,12 +9,17 @@ import Deadpool from "../img/deadpool.svg";
 import Dots from "../img/three-dots.svg";
 import Tweet from "../img/tweet.svg";
 import Modal from "./Modal";
+import TweetModal from "../Components/TweetModal";
 export default class LeftNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
     };
+    this.close = this.close.bind(this);
+  }
+  close() {
+    this.setState({ showModal: false });
   }
   static contextType = ThemeContext;
   render() {
@@ -44,12 +49,7 @@ export default class LeftNav extends Component {
                     />
                   </li>
                   <li className={style.active}>
-                    <a
-                      href="#"
-                      onClick={() => {
-                        console.log("hi");
-                      }}
-                    >
+                    <a href="#">
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -199,7 +199,17 @@ export default class LeftNav extends Component {
                     <span>More</span>
                   </li>
                   <li>
-                    <button style={{ height: this.props.hide ? "48px" : "" }}>
+                    <button
+                      style={{
+                        height: this.props.hide ? "48px" : "",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        this.state.showModal
+                          ? this.setState({ showModal: false })
+                          : this.setState({ showModal: true });
+                      }}
+                    >
                       {this.props.hide ? (
                         <Tweet
                           width="24px"
@@ -228,25 +238,16 @@ export default class LeftNav extends Component {
                       <span data-user>lorem ipsum</span>
                       <span muted-text="true">@lorem_ipsum</span>
                     </span>
-                    <button
-                      style={{ all: "unset" }}
-                      onClick={() => {
-                        this.state.showModal
-                          ? this.setState({ showModal: false })
-                          : this.setState({ showModal: true });
-                      }}
-                    >
-                      <Dots
-                        height="16px"
-                        width="16px"
-                        style={{ marginRight: "10px" }}
-                        className={
-                          this.context.theme == "default"
-                            ? global.bgDefault
-                            : global.bgDark
-                        }
-                      />
-                    </button>
+                    <Dots
+                      height="16px"
+                      width="16px"
+                      style={{ marginRight: "10px" }}
+                      className={
+                        this.context.theme == "default"
+                          ? global.bgDefault
+                          : global.bgDark
+                      }
+                    />
                   </li>
                 </ul>
               </div>
@@ -254,27 +255,8 @@ export default class LeftNav extends Component {
           </div>
         </div>
         {this.state.showModal ? (
-          <Modal>
-            <div className={global.modal}>
-              <div className={global["modal-top"]}>
-                <div>
-                  <button
-                    style={{ all: "unset" }}
-                    onClick={() => {
-                      this.setState({ showModal: false });
-                    }}
-                  >
-                    &#10005;
-                  </button>
-                </div>
-                <div>Modal Heading</div>
-              </div>
-              <div className={global["modal-body"]}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                enim est quasi nesciunt eos saepe quos iure tempore iusto
-                laborum!
-              </div>
-            </div>
+          <Modal outsideclick="allow" close={this.close}>
+            <TweetModal close={this.close} ismodal={true} />
           </Modal>
         ) : (
           " "

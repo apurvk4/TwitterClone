@@ -9,9 +9,10 @@ import ThemeContext from "./Components/themeContext";
 import changeTheme from "./Components/changeTheme";
 import TopBanner from "./Components/TopBanner";
 import Tweet from "./Components/Tweet";
+import TweetModal from "./Components/TweetModal";
 let arr = new Array(20).fill(0);
 arr = arr.map(() => {
-  return Math.floor(Math.random() * 100);
+  return Math.floor(Math.random() * 10000);
 });
 export default class App extends Component {
   constructor(props) {
@@ -45,7 +46,6 @@ export default class App extends Component {
   }
   static contextType = ThemeContext;
   render() {
-    console.log(arr);
     return (
       <ThemeContext.Provider value={{ theme: this.state.theme }}>
         <div className={global.reactWrapper}>
@@ -66,8 +66,9 @@ export default class App extends Component {
                   pageName="Home"
                   showDp={this.state.width <= 500 ? true : false}
                 />
+                <TweetModal ismodal={false} />
                 {arr.map((e) => {
-                  return <Tweet key={e} />;
+                  return <Tweet key={e} id={e} />;
                 })}
                 {this.state.width <= 500 ? <BottomNav /> : " "}
               </div>

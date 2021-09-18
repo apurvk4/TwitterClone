@@ -1,0 +1,70 @@
+@import url(/src/global.module.css);
+
+.tweet-left {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-top: 10px;
+  justify-content: flex-start;
+  min-width: 46px;
+  min-height: calc(100% - 10px);
+}
+.tweet-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+  margin-right: 10px;
+  width: calc(100% - 20px);
+  min-height: calc(100% - 20px);
+  margin: 10px;
+}
+.tweet-body-text {
+  flex-grow: 3;
+  display: flex;
+  width: 100%;
+  min-height: calc(100% - 50px);
+}
+
+.tweet-body-buttons {
+  display: flex;
+  height: 48px;
+}
+.tweet-body-buttons-uploads {
+  display: flex;
+  flex-grow: 2;
+  justify-content: flex-start;
+  align-items: center;
+}
+.tweet-body-buttons-uploads svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--accent-color);
+  padding: 5px;
+  border-radius: 50%;
+}
+.tweet-body-buttons-uploads svg:hover {
+  background-color: var(--default);
+  cursor: pointer;
+}
+.tweet-body-buttons-space {
+  flex-grow: 2.5;
+}
+.tweet-body-buttons-submit {
+  flex-grow: 0.5;
+}
+.tweet-body-buttons-submit button {
+  background-color: var(--accent-color);
+  border-radius: 30px;
+  height: 36px;
+  width: 75px;
+  border: 0;
+  color: white;
+  font-weight: 600;
+}
+.tweet-body-text textarea {
+  all: unset;
+  min-width: 100%;
+  min-height: 100%;
+  word-wrap: break-word;
+}

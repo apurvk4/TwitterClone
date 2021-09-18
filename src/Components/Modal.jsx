@@ -10,9 +10,22 @@ export default class Modal extends Component {
   }
   componentDidMount() {
     modalRoot.appendChild(this.el);
+    if (this.props.outsideclick == "allow") {
+      this.el.addEventListener("click", (e) => {
+        if (e.currentTarget == e.target) {
+          this.props.close();
+        }
+        e.stopPropagation();
+      });
+    }
   }
   componentWillUnmount() {
     modalRoot.removeChild(this.el);
+    this.el.removeEventListener("click", (e) => {
+      if (e.currentTarget == e.target) {
+        this.props.close();
+      }
+    });
   }
   render() {
     return dom.createPortal(this.props.children, this.el);

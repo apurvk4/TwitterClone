@@ -84,17 +84,19 @@ html
   color: red;
   cursor: pointer;
 }
-html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-share],
-html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-like],
-html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-reply],
-html[data-theme="default"] .tweet-body-main-engage .tooltip > [data-rt] {
+html[data-theme="default"] [data-share],
+html[data-theme="default"] [data-like],
+html[data-theme="default"] [data-reply],
+html[data-theme="default"] [data-rt],
+html[data-theme="default"] [data-tip] {
   fill: #000000;
 }
 
-html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-share],
-html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-like],
-html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-reply],
-html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-rt] {
+html[data-theme="dark"] [data-share],
+html[data-theme="dark"] [data-like],
+html[data-theme="dark"] [data-reply],
+html[data-theme="dark"] [data-rt],
+html[data-theme="default"] [data-tip] {
   fill: #ffffff;
 }
 [data-hashtag] {
@@ -129,30 +131,32 @@ html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-rt] {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(57, 57, 57, 0.9);
 }
 .modal {
   display: flex;
   flex-direction: column;
-  background-color: var(--default);
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  min-height: 108px;
+  min-width: 598px;
+  overflow: scroll;
+  border-bottom: 1px solid var(--default-border);
+}
+.modal[data-isModal="true"] {
   position: fixed;
   top: 50%;
   left: 50%;
   bottom: 0px;
   transform: translate(-50%, -50%);
-  min-height: 200px;
-  min-width: 600px;
-  overflow: scroll;
+  background-color: var(--default-bg);
+  border-radius: 10px;
 }
 .modal::-webkit-scrollbar {
   display: none;
 }
 .modal-top {
   display: flex;
-  margin-left: 10px;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--default-border);
@@ -161,7 +165,15 @@ html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-rt] {
 }
 .modal-top div:nth-of-type(1) {
   margin-right: 5px;
+  margin-left: 10px;
   flex-grow: 1;
+  /* border-radius: 50%; */
+}
+.modal-top div:nth-of-type(1) > button {
+  padding: 5px;
+}
+.modal-top div:nth-of-type(1) > button:hover {
+  background-color: var(--default);
 }
 .modal-top div:nth-of-type(2) {
   flex-grow: 3;
@@ -171,4 +183,15 @@ html[data-theme="dark"] .tweet-body-main-engage .tooltip > [data-rt] {
   flex-grow: 3;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  min-height: 100%;
+}
+.modal-body[data-isModal="true"] {
+  min-height: calc(100% - 53px);
+}
+@media screen and (max-width: 680px) {
+  .modal {
+    min-width: auto;
+    width: 100%;
+  }
 }

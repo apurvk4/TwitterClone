@@ -10,9 +10,6 @@ export default class RightNav extends Component {
   constructor(props) {
     super(props);
   }
-  componentWillUnmount() {
-    console.log("done");
-  }
   static contextType = ThemeContext;
   render() {
     return (

@@ -8,7 +8,7 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "clear": "rm -rf dist && rm -rf .parcel-cache",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "build": "rm -rf dist && NODE_ENV=production parcel build src/index.html --public-url ./"
+    "build": "npm run clear && NODE_ENV=production parcel build src/index.html --public-url ./"
   },
   "keywords": [],
   "author": "",

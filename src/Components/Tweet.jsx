@@ -9,6 +9,7 @@ import Dots from "../img/three-dots.svg";
 import style from "../Components/tweet.module.css";
 import global from "../global.module.css";
 import ThemeContext from "./themeContext";
+import Tip from "../img/tip.svg";
 export default class Tweet extends Component {
   constructor(props) {
     super(props);
@@ -16,13 +17,15 @@ export default class Tweet extends Component {
   static contextType = ThemeContext;
   render() {
     return (
-      <div className={style["tweet-card"]} key={this.props.key}>
+      <div className={style["tweet-card"]} key={this.props.id}>
         <div className={style["tweet-top"]}>
           <Rt
             height="16px"
             width="16px"
             alt="retweet"
-            className={this.context.theme ? global.bgDefault : global.bgDark}
+            className={
+              this.context.theme == "default" ? global.bgDefault : global.bgDark
+            }
           />
           <span style={{ marginLeft: "10px" }}>Someone Retweeted</span>
         </div>
@@ -66,22 +69,25 @@ export default class Tweet extends Component {
               vero fugiat sit esse magni perferendis dicta?
             </div>
             <div className={style["tweet-body-main-engage"]}>
-              <span>
-                <Reply height="16px" width="16px" data-reply />
-                120k
-              </span>
-              <span>
-                <Rt height="16px" width="16px" data-rt />
-                2m
-              </span>
-              <span>
-                <Like height="16px" width="16px" data-like />
-                5m
-              </span>
-              <span>
-                <Share height="16px" width="16px" data-share />
-                10m
-              </span>
+              <div className={style["btn-group"]}>
+                <Reply data-reply />
+                <span>120k</span>
+              </div>
+              <div className={style["btn-group"]}>
+                <Rt data-rt />
+                <span>2m</span>
+              </div>
+              <div className={style["btn-group"]}>
+                <Like data-like />
+                <span>5m</span>
+              </div>
+              <div className={style["btn-group"]}>
+                <Share data-share />
+              </div>
+              <div className={style["btn-group"]}>
+                <Tip data-tip />
+                <span>Tip</span>
+              </div>
             </div>
           </div>
         </div>
