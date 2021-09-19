@@ -3,12 +3,19 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--default-border);
-  margin-left: 5px;
-  margin-right: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.tweet-card:hover {
+  background-color: var(--default);
+  cursor: pointer;
 }
 .tweet-card .tweet-top {
   display: flex;
   margin-left: 26px;
+}
+.tweet-card .tweet-top:hover > * {
+  text-decoration: underline;
 }
 .tweet-card .tweet-body {
   display: flex;
@@ -110,15 +117,17 @@ html[data-theme="dark"] .tweet-body-main-info-dots {
   padding: 5px;
 }
 .tweet-body-main-engage > .btn-group:hover > svg {
-  background-color: var(--default);
-  fill: var(--accent-color);
+  background-color: rgba(29, 155, 240, 0.1);
+  fill: #1d9bf0;
   border-radius: 50%;
 }
 .tweet-body-main-engage > .btn-group:hover > svg[data-like] {
   fill: #f91880;
+  background-color: rgba(249, 24, 128, 0.1);
 }
 .tweet-body-main-engage > .btn-group:hover > svg[data-rt] {
   fill: #00ba7c;
+  background-color: rgba(0, 186, 124, 0.1);
 }
 .tweet-body-main-engage > .btn-group:hover > svg[data-tip] {
   background-color: inherit;
@@ -127,7 +136,7 @@ html[data-theme="dark"] .tweet-body-main-info-dots {
   align-self: center;
 }
 .tweet-body-main-engage > .btn-group:hover > span {
-  color: var(--accent-color);
+  color: #1d9bf0;
 }
 .tweet-body-main-engage > .btn-group:hover > svg[data-rt] + span {
   color: #00ba7c;

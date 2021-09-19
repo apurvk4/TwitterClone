@@ -1,7 +1,7 @@
 import { Component } from "react";
 import global from "../global.module.css";
 import Deadpool from "../img/deadpool.svg";
-import style from "./topbanner.module.css";
+import style from "./css/topbanner.module.css";
 import T from "../img/t.svg";
 import ThemeContext from "./themeContext";
 import Modal from "../Components/Modal";
@@ -53,8 +53,11 @@ export default class TopBanner extends Component {
           </li>
         </ul>
         {this.state.isNavOpen ? (
-          <Modal outsideclick="allow" close={this.handleClick}>
-            <MbLeftNav close={this.handleClick} />
+          <Modal outsideclick="allow" darken={true} close={this.handleClick}>
+            <MbLeftNav
+              close={this.handleClick}
+              setTheme={this.props.setTheme}
+            />
           </Modal>
         ) : (
           " "

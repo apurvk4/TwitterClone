@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import { Component } from "react";
 import global from "../global.module.css";
-import style from "./bottomNav.module.css";
+import style from "./css/bottomNav.module.css";
 import Search from "../img/search.svg";
 import ThemeContext from "./themeContext";
 export default class BottomNav extends Component {

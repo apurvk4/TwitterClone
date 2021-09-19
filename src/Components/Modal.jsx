@@ -6,9 +6,13 @@ export default class Modal extends Component {
   constructor(props) {
     super(props);
     this.el = document.createElement("div");
-    this.el.classList.add(global["overlay"]);
   }
   componentDidMount() {
+    if (this.props.darken) {
+      this.el.classList.add(global["overlay"]);
+    } else {
+      this.el.classList.add(global["overlay-noBg"]);
+    }
     modalRoot.appendChild(this.el);
     if (this.props.outsideclick == "allow") {
       this.el.addEventListener("click", (e) => {
@@ -17,6 +21,13 @@ export default class Modal extends Component {
         }
         e.stopPropagation();
       });
+    }
+  }
+  componentDidUpdate() {
+    if (this.props.darken) {
+      this.el.classList.add(global["overlay"]);
+    } else {
+      this.el.classList.add(global["overlay-noBg"]);
     }
   }
   componentWillUnmount() {

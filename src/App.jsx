@@ -65,6 +65,7 @@ export default class App extends Component {
                 <TopBanner
                   pageName="Home"
                   showDp={this.state.width <= 500 ? true : false}
+                  setTheme={this.themeChange.bind(this)}
                 />
                 <TweetModal ismodal={false} />
                 {arr.map((e) => {

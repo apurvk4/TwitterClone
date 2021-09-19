@@ -6,7 +6,7 @@ import Like from "../img/like.svg";
 import Share from "../img/share.svg";
 import Verified from "../img/verified.svg";
 import Dots from "../img/three-dots.svg";
-import style from "../Components/tweet.module.css";
+import style from "../Components/css/tweet.module.css";
 import global from "../global.module.css";
 import ThemeContext from "./themeContext";
 import Tip from "../img/tip.svg";
@@ -71,15 +71,15 @@ export default class Tweet extends Component {
             <div className={style["tweet-body-main-engage"]}>
               <div className={style["btn-group"]}>
                 <Reply data-reply />
-                <span>120k</span>
+                <span>120</span>
               </div>
               <div className={style["btn-group"]}>
                 <Rt data-rt />
-                <span>2m</span>
+                <span>10</span>
               </div>
               <div className={style["btn-group"]}>
                 <Like data-like />
-                <span>5m</span>
+                <span>1000</span>
               </div>
               <div className={style["btn-group"]}>
                 <Share data-share />
