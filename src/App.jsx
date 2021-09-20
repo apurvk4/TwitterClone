@@ -10,6 +10,7 @@ import changeTheme from "./Components/changeTheme";
 import TopBanner from "./Components/TopBanner";
 import Tweet from "./Components/Tweet";
 import TweetModal from "./Components/TweetModal";
+import TweetBtn from "./Components/TweetBtn";
 let arr = new Array(20).fill(0);
 arr = arr.map(() => {
   return Math.floor(Math.random() * 10000);
@@ -67,7 +68,11 @@ export default class App extends Component {
                   showDp={this.state.width <= 500 ? true : false}
                   setTheme={this.themeChange.bind(this)}
                 />
-                <TweetModal ismodal={false} />
+                {this.state.width >= 500 ? (
+                  <TweetModal ismodal={false} />
+                ) : (
+                  <TweetBtn />
+                )}
                 {arr.map((e) => {
                   return <Tweet key={e} id={e} />;
                 })}
