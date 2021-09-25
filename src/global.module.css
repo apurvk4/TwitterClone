@@ -59,12 +59,14 @@ html[data-theme="default" i] button[data-follow="follow" i] {
   cursor: pointer;
 }
 button[data-follow="following" i]:hover {
+  background-color: rgba(237, 28, 36, 0.1);
   border-color: #ed1c24;
   color: #ed1c24;
 }
 html[data-theme="default" i] button[data-follow="following" i] {
   background-color: inherit;
   color: #000000;
+  border: 1px solid var(--default-border);
 }
 html[data-theme="dark" i] button[data-follow="follow" i] {
   background-color: #ffffff;
@@ -84,6 +86,7 @@ html
   border: 1px solid red;
   color: red;
   cursor: pointer;
+  background-color: rgba(237, 28, 36, 0.1);
 }
 html[data-theme="default"] [data-share],
 html[data-theme="default"] [data-like],

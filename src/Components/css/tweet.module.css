@@ -81,9 +81,15 @@
 }
 html[data-theme="default"] .tweet-body-main-info-dots {
   fill: #000;
+  padding: 10px;
 }
 html[data-theme="dark"] .tweet-body-main-info-dots {
   fill: #fff;
+  padding: 10px;
+}
+html[data-theme] svg.tweet-body-main-info-dots:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+  border-radius: 50%;
 }
 .tweet-card .tweet-body .tweet-body-main .tweet-body-main-body {
   display: block;

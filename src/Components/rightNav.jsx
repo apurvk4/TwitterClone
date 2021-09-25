@@ -6,9 +6,19 @@ import ThemeContext from "../Components/themeContext";
 import Food from "../img/food.png";
 import Deadpool from "../img/deadpool.svg";
 import Verified from "../img/verified.svg";
+import NavOptions from "../Components/NavOptions";
 export default class RightNav extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showModal: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.state.showModal
+      ? this.setState({ showModal: false })
+      : this.setState({ showModal: true });
   }
   static contextType = ThemeContext;
   render() {
@@ -59,7 +69,13 @@ export default class RightNav extends Component {
                           elit. Soluta, quibusdam.
                         </span>
                       </div>
-                      <div className={style["story-img"]} dots="true">
+                      <button
+                        style={{ backgroundColor: "inherit" }}
+                        className={style["story-img"]}
+                        id="rightNav-options"
+                        dots="true"
+                        onClick={this.handleClick}
+                      >
                         <Dots
                           width="16px"
                           height="16px"
@@ -69,7 +85,12 @@ export default class RightNav extends Component {
                               : global.bgDark
                           }
                         />
-                      </div>
+                        {this.state.showModal ? (
+                          <NavOptions closeModal={this.handleClick} />
+                        ) : (
+                          " "
+                        )}
+                      </button>
                     </div>
                   </li>
                   <li>

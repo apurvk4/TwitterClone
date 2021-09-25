@@ -33,18 +33,21 @@
   display: flex;
   justify-content: stretch;
   align-items: center;
-  padding: 10px;
 }
-.fixedNavItem0 > ul > li > button {
+.fixedNavItem0 > ul > li > button,
+.fixedNavItem0 > ul > li > a {
   all: unset;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
-.fixedNavItem0 > ul > li > button > span {
+.fixedNavItem0 > ul > li > button > span,
+.fixedNavItem0 > ul > li > a > span {
   align-self: center;
 }
-.fixedNavItem0 ul li > button:not([data-type="tweet"]) > svg {
+.fixedNavItem0 ul li > button:not([data-type="tweet"]) > svg,
+.fixedNavItem0 ul li > a > svg {
   margin-right: 5px;
 }
 .fixedNavItem0 ul li > button[data-type="tweet"] {
@@ -57,9 +60,11 @@
   /* font-size: x-large; */
   font-weight: 900;
   color: #fff;
+  margin: 10px;
 }
 @media screen and (max-width: 1392px) {
-  div.fixedNavItem0 > ul > li > button > span {
+  div.fixedNavItem0 > ul > li > button > span,
+  div.fixedNavItem0 > ul > li > a > span {
     display: none;
   }
   .fixedNavItem0 ul li > button[data-type="tweet"] {
@@ -75,18 +80,30 @@
     display: none;
   }
 }
-.fixedNavItem0 ul > :not(:last-child):hover,
+.fixedNavItem0 ul > li:not(:last-child, :first-child) > a:hover,
+.fixedNavItem0 ul > li:not(:last-child, :first-child) > button:hover,
 .fixedNavItem:hover {
   background-color: var(--default);
   border-radius: 30px;
 }
-html[data-theme="default"] .active > svg {
+.fixedNavItem0 ul > li:first-child > a:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+  border-radius: 50%;
+}
+ul > li > a:hover,
+ul > li > button:hover {
+  cursor: pointer;
+}
+html[data-theme="default"] ul li > a.active > svg,
+html[data-theme="default"] ul li > button.active > svg {
   fill: #000000;
 }
-html[data-theme="dark"] .active > svg {
+html[data-theme="dark"] ul li > a.active > svg,
+html[data-theme="dark"] ul li > button.active > svg {
   fill: #ffffff;
 }
-html[data-theme="default"] .active > span {
+html[data-theme="default"] ul > li > a.active > span,
+html[data-theme="default"] ul > li > button.active > span {
   font-size: larger;
   font-weight: 900;
 }

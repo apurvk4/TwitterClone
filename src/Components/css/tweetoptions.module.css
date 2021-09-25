@@ -2,16 +2,15 @@
 .container {
   position: absolute;
   min-width: 197.8px;
-  height: 494px;
   background-color: var(--default-bg);
   border: 1px solid var(--default-border);
   z-index: 1;
   border-radius: 10px;
-  left: 0%;
+  box-shadow: 0px 0px 20px -7px var(--default-text);
 }
-@media screen and (min-width: 1392px) {
+@media screen and (max-width: 980px) {
   .container {
-    top: 0%;
+    right: 10%;
   }
 }
 .flexContainer {
@@ -35,13 +34,20 @@
 .col {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid var(--default-border);
 }
 .col-items {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 16px;
+}
+.col :first-child {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.col :last-child {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .col-items:hover {
   background-color: var(--default);
