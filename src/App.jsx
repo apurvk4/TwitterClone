@@ -46,7 +46,7 @@ export default class App extends Component {
   render() {
     return (
       <ThemeContext.Provider value={{ theme: this.state.theme }}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <div className={global.reactWrapper}>
             <div className={style.app}>
               {this.state.width >= 500 ? (
