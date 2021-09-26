@@ -9,10 +9,19 @@ import Dots from "../img/three-dots.svg";
 import style from "../Components/css/tweet.module.css";
 import global from "../global.module.css";
 import ThemeContext from "./themeContext";
-import Tip from "../img/tip.svg";
+import TweetOptions from "./TweetOptions";
 export default class Tweet extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showOptions: false,
+    };
+    this.close = this.close.bind(this);
+  }
+  close() {
+    this.state.showOptions
+      ? this.setState({ showOptions: false })
+      : this.setState({ showOptions: true });
   }
   static contextType = ThemeContext;
   render() {
@@ -56,12 +65,26 @@ export default class Tweet extends Component {
                 <span muted-text="true">@lorem_ipsum</span>
                 <span muted-text="true">10m</span>
               </div>
-              <Dots
-                className={style["tweet-body-main-info-dots"]}
-                height="16px"
-                width="16px"
-                alt="get more info about this tweet"
-              />
+              <button
+                style={{ all: "unset" }}
+                id="tweet-options"
+                onClick={this.close}
+              >
+                <Dots
+                  className={style["tweet-body-main-info-dots"]}
+                  height="16px"
+                  width="16px"
+                  alt="get more info about this tweet"
+                />
+                {this.state.showOptions ? (
+                  <TweetOptions
+                    username="lorem_ipsum"
+                    closeModal={this.close}
+                  />
+                ) : (
+                  " "
+                )}
+              </button>
             </div>
             <div className={style["tweet-body-main-body"]}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
@@ -83,10 +106,6 @@ export default class Tweet extends Component {
               </div>
               <div className={style["btn-group"]}>
                 <Share data-share />
-              </div>
-              <div className={style["btn-group"]}>
-                <Tip data-tip />
-                <span>Tip</span>
               </div>
             </div>
           </div>

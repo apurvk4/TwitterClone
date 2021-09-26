@@ -12,6 +12,7 @@ import Modal from "./Modal";
 import TweetModal from "../Components/TweetModal";
 import NavListModal from "./NavListModal";
 import DisplayModal from "./DisplayModal";
+import { Link } from "react-router-dom";
 export default class LeftNav extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +23,16 @@ export default class LeftNav extends Component {
     this.close = this.close.bind(this);
     this.modalReducer = this.modalReducer.bind(this);
     this.modalClick = this.modalClick.bind(this);
+    this.linkClick = this.linkClick.bind(this);
   }
   close() {
     this.setState({ showModal: false, ModalType: null });
+  }
+  linkClick(e) {
+    document
+      .getElementsByClassName(style["active"])[0]
+      .classList.remove(style["active"]);
+    e.currentTarget.classList.toggle(style["active"]);
   }
   modalReducer() {
     switch (this.state.ModalType) {
@@ -35,11 +43,7 @@ export default class LeftNav extends Component {
           </Modal>
         );
       case "more":
-        return (
-          <Modal outsideclick="allow" darken={false} close={this.close}>
-            <NavListModal click={this.modalClick} />
-          </Modal>
-        );
+        return <NavListModal click={this.modalClick} close={this.close} />;
       case "display":
         return (
           <Modal outsideclick="allow" darken={true} close={this.close}>
@@ -66,18 +70,22 @@ export default class LeftNav extends Component {
             <div className={style.fixedNav}>
               <div className={style["fixedNavItem0"]}>
                 <ul style={{ listStyle: "none" }}>
-                  <li style={{ height: "42px", width: "42px" }}>
-                    <button>
+                  <li>
+                    <Link to="/" onClick={this.linkClick}>
                       <Twitter
                         width="32px"
                         height="32px"
                         data-icon
-                        style={{ padding: "5px" }}
+                        style={{ padding: "5px", fill: "#1d9bf0" }}
                       />
-                    </button>
+                    </Link>
                   </li>
-                  <li className={style.active}>
-                    <button>
+                  <li>
+                    <Link
+                      className={style.active}
+                      to="/"
+                      onClick={this.linkClick}
+                    >
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -94,10 +102,10 @@ export default class LeftNav extends Component {
                         </g>
                       </svg>
                       <span>Home</span>
-                    </button>
+                    </Link>
                   </li>
                   <li>
-                    <button>
+                    <Link to="/explore" onClick={this.linkClick}>
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -114,10 +122,10 @@ export default class LeftNav extends Component {
                         </g>
                       </svg>
                       <span>Explore</span>
-                    </button>
+                    </Link>
                   </li>
                   <li>
-                    <button>
+                    <Link to="/notifications" onClick={this.linkClick}>
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -133,11 +141,11 @@ export default class LeftNav extends Component {
                           <path d="M21.697 16.468c-.02-.016-2.14-1.64-2.103-6.03.02-2.532-.812-4.782-2.347-6.335C15.872 2.71 14.01 1.94 12.005 1.93h-.013c-2.004.01-3.866.78-5.242 2.174-1.534 1.553-2.368 3.802-2.346 6.334.037 4.33-2.02 5.967-2.102 6.03-.26.193-.366.53-.265.838.102.308.39.515.712.515h4.92c.102 2.31 1.997 4.16 4.33 4.16s4.226-1.85 4.327-4.16h4.922c.322 0 .61-.206.71-.514.103-.307-.003-.645-.263-.838zM12 20.478c-1.505 0-2.73-1.177-2.828-2.658h5.656c-.1 1.48-1.323 2.66-2.828 2.66zM4.38 16.32c.74-1.132 1.548-3.028 1.524-5.896-.018-2.16.644-3.982 1.913-5.267C8.91 4.05 10.397 3.437 12 3.43c1.603.008 3.087.62 4.18 1.728 1.27 1.285 1.933 3.106 1.915 5.267-.024 2.868.785 4.765 1.525 5.896H4.38z"></path>
                         </g>
                       </svg>
-                      <span>Notification</span>
-                    </button>
+                      <span>Notifications</span>
+                    </Link>
                   </li>
                   <li>
-                    <button>
+                    <Link to="/messages" onClick={this.linkClick}>
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -154,10 +162,10 @@ export default class LeftNav extends Component {
                         </g>
                       </svg>
                       <span>Messages</span>
-                    </button>
+                    </Link>
                   </li>
                   <li>
-                    <button>
+                    <Link to="/bookmarks" onClick={this.linkClick}>
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -174,10 +182,10 @@ export default class LeftNav extends Component {
                         </g>
                       </svg>
                       <span>BookMarks</span>
-                    </button>
+                    </Link>
                   </li>
                   <li>
-                    <button>
+                    <Link to="/lists" onClick={this.linkClick}>
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -195,10 +203,10 @@ export default class LeftNav extends Component {
                         </g>
                       </svg>
                       <span>Lists</span>
-                    </button>
+                    </Link>
                   </li>
                   <li>
-                    <button>
+                    <Link to="/profile" onClick={this.linkClick}>
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -206,7 +214,7 @@ export default class LeftNav extends Component {
                         width="32px"
                         className={
                           this.context.theme == "default"
-                            ? global["bgDefault"]
+                            ? global["bgDefault"] + " " + style["active"]
                             : global["bgDark"]
                         }
                       >
@@ -215,9 +223,9 @@ export default class LeftNav extends Component {
                         </g>
                       </svg>
                       <span>Profile</span>
-                    </button>
+                    </Link>
                   </li>
-                  <li>
+                  <li id="nav-more">
                     <button
                       onClick={() => {
                         this.state.showModal && this.state.ModalType == "more"
@@ -251,6 +259,7 @@ export default class LeftNav extends Component {
                       </svg>
                       <span>More</span>
                     </button>
+                    {this.state.ModalType == "more" ? this.modalReducer() : " "}
                   </li>
                   <li>
                     <button
@@ -261,7 +270,10 @@ export default class LeftNav extends Component {
                       data-type="tweet"
                       onClick={() => {
                         this.state.showModal && this.state.ModalType == "tweet"
-                          ? this.setState({ showModal: false, ModalType: null })
+                          ? this.setState({
+                              showModal: false,
+                              ModalType: null,
+                            })
                           : this.setState({
                               showModal: true,
                               ModalType: "tweet",
@@ -316,7 +328,7 @@ export default class LeftNav extends Component {
             </div>
           </div>
         </div>
-        {this.state.showModal && this.state.ModalType
+        {this.state.showModal && this.state.ModalType != "more"
           ? this.modalReducer()
           : " "}
       </div>
