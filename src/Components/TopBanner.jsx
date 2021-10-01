@@ -1,24 +1,20 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import global from "../global.module.css";
 import Deadpool from "../img/deadpool.svg";
 import style from "./css/topbanner.module.css";
 import T from "../img/t.svg";
-import ThemeContext from "./themeContext";
+import ThemeContext from "../utils/themeContext";
 import Modal from "../Components/Modal";
 import MbLeftNav from "../Components/MbLeftNav";
-export default class TopBanner extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      isNavOpen: false,
-    };
-  }
-  handleClick() {
+export default class TopBanner extends PureComponent {
+  state = {
+    isNavOpen: false,
+  };
+  handleClick = () => {
     this.state.isNavOpen
       ? this.setState({ isNavOpen: false })
       : this.setState({ isNavOpen: true });
-  }
+  };
   static contextType = ThemeContext;
   render() {
     return (

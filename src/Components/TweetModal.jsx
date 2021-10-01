@@ -3,9 +3,6 @@ import style from "../Components/css/tweetmodal.module.css";
 import global from "../global.module.css";
 import DeadPool from "../img/deadpool.svg";
 export default class TweetModal extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div

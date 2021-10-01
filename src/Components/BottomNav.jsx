@@ -3,11 +3,8 @@ import { Component } from "react";
 import global from "../global.module.css";
 import style from "./css/bottomNav.module.css";
 import Search from "../img/search.svg";
-import ThemeContext from "./themeContext";
+import ThemeContext from "../utils/themeContext";
 export default class BottomNav extends Component {
-  constructor(props) {
-    super(props);
-  }
   static contextType = ThemeContext;
   render() {
     return (

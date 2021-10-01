@@ -1,23 +1,19 @@
 import { Component } from "react";
 import style from "../Components/css/tweetoptions.module.css";
 import global from "../global.module.css";
-import ThemeContext from "./themeContext";
+import ThemeContext from "../utils/themeContext";
 export default class TweetOptions extends Component {
-  constructor(props) {
-    super(props);
-    this.clickHandler = this.clickHandler.bind(this);
-  }
   componentDidMount() {
     document.addEventListener("click", this.clickHandler);
   }
-  clickHandler(e) {
+  clickHandler = (e) => {
     if (
       !e.target.closest(style["container"]) &&
       !e.target.closest("#tweet-options")
     ) {
       this.props.closeModal();
     }
-  }
+  };
   componentWillUnmount() {
     document.removeEventListener("click", this.clickHandler);
   }

@@ -1,144 +1,145 @@
 import dom from "react-dom";
+import "core-js";
 import { Component } from "react";
-import global from "../src/global.module.css";
-import style from "../src/app.module.css";
-import LeftNav from "./Components/leftNav";
-import RightNav from "./Components/rightNav";
-import BottomNav from "./Components/BottomNav";
-import ThemeContext from "./Components/themeContext";
-import changeTheme from "./Components/changeTheme";
-import Homepage from "./Components/Homepage";
-import TopBanner from "./Components/TopBanner";
-import { Route, Switch } from "react-router";
+
+import ThemeContext from "./utils/themeContext";
+import changeTheme from "./utils/changeTheme";
+import Navigation from "./Components/Navigation";
+import Login from "./Components/login";
+import { Redirect, Route, Switch } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.Getwidth = this.Getwidth.bind(this);
-    this.handleResize = this.handleResize.bind(this);
-    this.state = {
-      width: this.Getwidth(),
-      theme: "default",
-      name: "Home",
-    };
-  }
+  getWidth = () => {
+    return window.innerWidth && document.documentElement.clientWidth
+      ? Math.min(window.innerWidth, document.documentElement.clientWidth)
+      : window.innerWidth ||
+          document.documentElement.clientWidth ||
+          document.querySelector("body").clientWidth;
+  };
+  checkLogin = () => {
+    return document.cookie
+      .split(";")
+      .find((row) => row.startsWith("userToken"));
+  };
+  state = {
+    width: this.getWidth(),
+    theme: "default",
+    name: "Home",
+    login: this.checkLogin(),
+  };
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
   }
-  handleResize() {
-    this.setState({ width: this.Getwidth() });
-  }
-  Getwidth() {
-    return window.innerWidth && document.documentElement.clientWidth
-      ? Math.min(window.innerWidth, document.documentElement.clientWidth)
-      : window.innerWidth ||
-          document.documentElement.clientWidth ||
-          document.getElementsByTagName("body")[0].clientWidth;
-  }
-  themeChange(val) {
+  handleResize = () => {
+    this.setState({ width: this.getWidth() });
+  };
+  themeChange = (val) => {
     this.setState({ theme: val });
     changeTheme();
-  }
+  };
+  setLogin = () => {
+    if (
+      !document.cookie.split(";").find((row) => row.startsWith("userToken"))
+    ) {
+      let token = "" + Math.random() * 100000;
+      document.cookie = `userToken=${token}; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure`;
+      this.setState({ login: !this.state.login });
+    }
+  };
   static contextType = ThemeContext;
   render() {
     return (
       <ThemeContext.Provider value={{ theme: this.state.theme }}>
         <Router basename={process.env.PUBLIC_URL}>
-          <div className={global.reactWrapper}>
-            <div className={style.app}>
-              {this.state.width >= 500 ? (
-                <div className={style.leftNav}>
-                  <LeftNav
-                    setTheme={this.themeChange.bind(this)}
-                    hide={this.state.width <= 1392 ? true : false}
-                  />
-                </div>
+          <Switch>
+            <Route exact path="/">
+              {this.state.login ? (
+                <Redirect to="/home" />
               ) : (
-                ""
+                <Login login={this.setLogin} />
               )}
-              <div className={style.mainContent}>
-                <div className={style.content}>
-                  <TopBanner
-                    pageName={this.state.name}
-                    showDp={this.state.width <= 500 ? true : false}
-                    setTheme={this.themeChange.bind(this)}
-                  />
-                  <Switch>
-                    <Route
-                      path="/"
-                      exact
-                      render={() => {
-                        this.state.name != "Home"
-                          ? this.setState({ name: "Home" })
-                          : " ";
-                        return <Homepage Width={this.state.width} />;
-                      }}
-                    />
-                    <Route
-                      path="/explore"
-                      render={() => {
-                        this.state.name != "Explore"
-                          ? this.setState({ name: "Explore" })
-                          : " ";
-                        return this.props.explore;
-                      }}
-                    />
-                    <Route
-                      path="/notifications"
-                      render={() => {
-                        this.state.name != "Notifications"
-                          ? this.setState({ name: "Notifications" })
-                          : " ";
-                        return this.props.notifications;
-                      }}
-                    />
-                    <Route
-                      path="/messages"
-                      render={() => {
-                        this.state.name != "Messages"
-                          ? this.setState({ name: "Messages" })
-                          : " ";
-                        return this.props.messages;
-                      }}
-                    />
-                    <Route
-                      path="/bookmarks"
-                      render={() => {
-                        this.state.name != "Bookmarks"
-                          ? this.setState({ name: "Bookmarks" })
-                          : " ";
-                        return this.props.bookmarks;
-                      }}
-                    />
-                    <Route
-                      path="/lists"
-                      render={() => {
-                        this.state.name != "Lists"
-                          ? this.setState({ name: "Lists" })
-                          : " ";
-                        return this.props.lists;
-                      }}
-                    />
-                    <Route
-                      path="/profile"
-                      render={() => {
-                        this.state.name != "Profile"
-                          ? this.setState({ name: "Profile" })
-                          : " ";
-                        return this.props.profile;
-                      }}
-                    />
-                  </Switch>
-
-                  {this.state.width <= 500 ? <BottomNav /> : " "}
-                </div>
-                {this.state.width >= 980 ? <RightNav /> : " "}
-              </div>
-            </div>
-          </div>
+            </Route>
+            <Route path="/home">
+              {this.state.login ? (
+                <Navigation
+                  route="Home"
+                  width={this.state.width}
+                  themeChange={this.themeChange}
+                />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+            <Route path="/explore">
+              {this.state.login ? (
+                <Navigation
+                  route="Explore"
+                  width={this.state.width}
+                  themeChange={this.themeChange}
+                />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+            <Route path="/notifications">
+              {this.state.login ? (
+                <Navigation
+                  route="Notifications"
+                  width={this.state.width}
+                  themeChange={this.themeChange}
+                />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+            <Route path="/messages">
+              {this.state.login ? (
+                <Navigation
+                  route="Messages"
+                  width={this.state.width}
+                  themeChange={this.themeChange}
+                />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+            <Route path="/bookmarks">
+              {this.state.login ? (
+                <Navigation
+                  route="Bookmarks"
+                  width={this.state.width}
+                  themeChange={this.themeChange}
+                />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+            <Route path="/lists">
+              {this.state.login ? (
+                <Navigation
+                  route="Lists"
+                  width={this.state.width}
+                  themeChange={this.themeChange}
+                />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+            <Route path="/:id">
+              {this.state.login ? (
+                <Navigation
+                  route="Profile"
+                  width={this.state.width}
+                  themeChange={this.themeChange}
+                />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+          </Switch>
         </Router>
       </ThemeContext.Provider>
     );

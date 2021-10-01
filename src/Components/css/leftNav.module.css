@@ -102,8 +102,8 @@ html[data-theme="dark"] ul li > a.active > svg,
 html[data-theme="dark"] ul li > button.active > svg {
   fill: #ffffff;
 }
-html[data-theme="default"] ul > li > a.active > span,
-html[data-theme="default"] ul > li > button.active > span {
+html[data-theme] ul > li > a.active > span,
+html[data-theme] ul > li > button.active > span {
   font-size: larger;
   font-weight: 900;
 }

@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Component } from "react";
+import { PureComponent } from "react";
 import style from "../Components/css/leftNav.module.css";
 import global from "../global.module.css";
 import Twitter from "../img/twitter.svg";
-import ThemeContext from "./themeContext";
+import ThemeContext from "../utils/themeContext";
 import Deadpool from "../img/deadpool.svg";
 import Dots from "../img/three-dots.svg";
 import Tweet from "../img/tweet.svg";
@@ -13,28 +13,24 @@ import TweetModal from "../Components/TweetModal";
 import NavListModal from "./NavListModal";
 import DisplayModal from "./DisplayModal";
 import { Link } from "react-router-dom";
-export default class LeftNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false,
-      ModalType: null,
-    };
-    this.close = this.close.bind(this);
-    this.modalReducer = this.modalReducer.bind(this);
-    this.modalClick = this.modalClick.bind(this);
-    this.linkClick = this.linkClick.bind(this);
+export default class LeftNav extends PureComponent {
+  state = {
+    showModal: false,
+    ModalType: null,
+  };
+  componentDidUpdate() {
+    console.log("update");
   }
-  close() {
+  close = () => {
     this.setState({ showModal: false, ModalType: null });
-  }
-  linkClick(e) {
+  };
+  linkClick = (e) => {
     document
       .getElementsByClassName(style["active"])[0]
       .classList.remove(style["active"]);
     e.currentTarget.classList.toggle(style["active"]);
-  }
-  modalReducer() {
+  };
+  modalReducer = () => {
     switch (this.state.ModalType) {
       case "tweet":
         return (
@@ -53,11 +49,11 @@ export default class LeftNav extends Component {
       default:
         break;
     }
-  }
-  modalClick(type) {
+  };
+  modalClick = (type) => {
     this.close();
     this.setState({ showModal: true, ModalType: type });
-  }
+  };
   static contextType = ThemeContext;
   render() {
     return (
@@ -71,7 +67,7 @@ export default class LeftNav extends Component {
               <div className={style["fixedNavItem0"]}>
                 <ul style={{ listStyle: "none" }}>
                   <li>
-                    <Link to="/" onClick={this.linkClick}>
+                    <Link to="/home" onClick={this.linkClick}>
                       <Twitter
                         width="32px"
                         height="32px"
@@ -83,7 +79,7 @@ export default class LeftNav extends Component {
                   <li>
                     <Link
                       className={style.active}
-                      to="/"
+                      to="/home"
                       onClick={this.linkClick}
                     >
                       <svg
@@ -206,7 +202,7 @@ export default class LeftNav extends Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/profile" onClick={this.linkClick}>
+                    <Link to="/lorem_ipsum" onClick={this.linkClick}>
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"

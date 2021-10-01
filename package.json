@@ -6,7 +6,7 @@
     "dev": "parcel src/index.html ",
     "start": "npm run clear && npm run dev",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "clear": "rm -rf dist && rm -rf .parcel-cache",
+    "clear": "rm -rf dist .parcel-cache docs",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "build": "npm run clear && NODE_ENV=production PUBLIC_URL=TwitterClone parcel build src/index.html --public-url ./ --dist-dir docs"
   },
@@ -14,6 +14,7 @@
   "author": "apurv kumar",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.18.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0"
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
     "@parcel/transformer-image": "^2.0.0-rc.0",
     "@parcel/transformer-sass": "^2.0.0-rc.0",
@@ -33,5 +35,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "parcel": "^2.0.0-rc.0",
     "prettier": "^2.3.2"
+  },
+  "browserslist": {
+    "chrome": "58",
+    "ie": "8"
   }
 }

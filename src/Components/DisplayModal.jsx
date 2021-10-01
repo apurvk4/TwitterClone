@@ -2,7 +2,7 @@ import { Component } from "react";
 import style from "../Components/css/displaymodal.module.css";
 // import global from "../global.module.css";
 import Twitter from "../img/twitter_square.jpg";
-import ThemeContext from "../Components/themeContext";
+import ThemeContext from "../utils/themeContext";
 function findColor() {
   let color = document.documentElement.style.getPropertyValue("--accent-color");
   switch (color) {
@@ -23,14 +23,10 @@ function findColor() {
   }
 }
 export default class DisplayModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: findColor(),
-    };
-    this.colorChange = this.colorChange.bind(this);
-  }
-  colorChange(color) {
+  state = {
+    color: findColor(),
+  };
+  colorChange = (color) => {
     switch (color) {
       case "blue":
         this.setState({ color: "blue" });
@@ -59,7 +55,7 @@ export default class DisplayModal extends Component {
       default:
         break;
     }
-  }
+  };
   static contextType = ThemeContext;
   render() {
     return (

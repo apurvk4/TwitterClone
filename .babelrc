@@ -5,6 +5,13 @@
       {
         "runtime": "automatic"
       }
+    ],
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": { "version": "3.18.1", "proposals": true }
+      }
     ]
   ]
 }

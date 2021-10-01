@@ -2,22 +2,18 @@ import { Component } from "react";
 import Deadpool from "../img/deadpool.svg";
 import global from "../global.module.css";
 import style from "../Components/css/mbleftnav.module.css";
-import ThemeContext from "./themeContext";
+import ThemeContext from "../utils/themeContext";
 import DisplayModal from "./DisplayModal";
 import Modal from "./Modal";
 export default class MbLeftNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false,
-    };
-    this.close = this.close.bind(this);
-  }
-  close() {
+  state = {
+    showModal: false,
+  };
+  close = () => {
     this.state.showModal
       ? this.setState({ showModal: false })
       : this.setState({ showModal: true });
-  }
+  };
   static contextType = ThemeContext;
   render() {
     return (

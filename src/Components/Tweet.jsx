@@ -8,21 +8,17 @@ import Verified from "../img/verified.svg";
 import Dots from "../img/three-dots.svg";
 import style from "../Components/css/tweet.module.css";
 import global from "../global.module.css";
-import ThemeContext from "./themeContext";
+import ThemeContext from "../utils/themeContext";
 import TweetOptions from "./TweetOptions";
 export default class Tweet extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showOptions: false,
-    };
-    this.close = this.close.bind(this);
-  }
-  close() {
+  state = {
+    showOptions: false,
+  };
+  close = () => {
     this.state.showOptions
       ? this.setState({ showOptions: false })
       : this.setState({ showOptions: true });
-  }
+  };
   static contextType = ThemeContext;
   render() {
     return (

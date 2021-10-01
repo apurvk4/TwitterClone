@@ -1,25 +1,21 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import style from "../Components/css/rightNav.module.css";
 import global from "../global.module.css";
 import Dots from "../img/three-dots.svg";
-import ThemeContext from "../Components/themeContext";
+import ThemeContext from "../utils/themeContext";
 import Food from "../img/food.png";
 import Deadpool from "../img/deadpool.svg";
 import Verified from "../img/verified.svg";
 import NavOptions from "../Components/NavOptions";
-export default class RightNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
+export default class RightNav extends PureComponent {
+  state = {
+    showModal: false,
+  };
+  handleClick = () => {
     this.state.showModal
       ? this.setState({ showModal: false })
       : this.setState({ showModal: true });
-  }
+  };
   static contextType = ThemeContext;
   render() {
     return (

@@ -5,8 +5,6 @@ coverage/
 .cache/
 c.txt
 start.sh
-.parcel-cache
-.gitignore
-
-.parcel-cache/data.mdb
-.parcel-cache/data.mdb
+.parcel-cache/*
+/src/Components/test.jsx
+src/Components/test.jsx
